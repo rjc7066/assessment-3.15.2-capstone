@@ -46,7 +46,7 @@ async function readMoviesReviews(movie_id) {
   return db("movies as m")
   .join("reviews as r", "m.movie_id", "r.movie_id")
   .join("critics as c", "r.critic_id", "c.critic_id")
-  .select("m.*", "c.*")
+  .select("m.*", "c.*", "r.*")
   .where({"m.movie_id": movie_id})
   .then(reviews => Promise.all(reviews.map(addCritic)));
 }
